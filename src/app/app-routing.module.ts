@@ -11,6 +11,7 @@ const routes: Routes = [
     loadChildren: () => import('./pages/dashboard/dashboard.module').then(mod => mod.DashboardModule)
   },
   {path: 'login', loadChildren: () => import('./pages/login/login.module').then(mod => mod.LoginModule)},
+  {path: 'search', loadChildren: () => import('./pages/search-results/search-results.module').then(mod => mod.SearchResultsModule)},
   {path: 'register', loadChildren: () => import('./pages/register/register.module').then(mod => mod.RegisterModule)},
   {
     path: 'search-results',

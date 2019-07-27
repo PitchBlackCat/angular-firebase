@@ -17,6 +17,7 @@ export class LoginComponent extends Destroyable implements OnInit {
   };
 
   public form: FormGroup;
+  public loading = false;
 
   constructor(private userService: UserService) {
     super();
@@ -37,11 +38,19 @@ export class LoginComponent extends Destroyable implements OnInit {
     }
 
     const value = this.form.getRawValue();
-    this.userService.login(value.email, value.password);
+    this.loading = true;
+    this.userService.login(value.email, value.password).then(
+      () => this.loading = false,
+      () => this.loading = false
+    );
   }
 
   loginWithGoogle() {
-    this.userService.loginWithGoogle();
+    this.loading = true;
+    this.userService.loginWithGoogle().then(
+      () => this.loading = false,
+      () => this.loading = false
+    );
   }
 
 }

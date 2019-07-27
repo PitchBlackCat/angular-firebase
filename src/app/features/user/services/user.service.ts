@@ -1,30 +1,44 @@
-import {Injectable} from '@angular/core';
+import {EventEmitter, Injectable} from '@angular/core';
 import {AngularFirestore} from '@angular/fire/firestore';
 import {AngularFireAuth} from '@angular/fire/auth';
 import {Router} from '@angular/router';
 import {User} from 'firebase';
 import * as firebase from 'firebase/app';
+import {Observable, ReplaySubject} from 'rxjs/index';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
-  private user: User;
-
   constructor(private afs: AngularFirestore, private afAuth: AngularFireAuth, private router: Router) {
     this.afAuth.authState.subscribe(user => {
       if (user) {
         this.user = user;
-        localStorage.setItem('user', JSON.stringify(this.user));
       } else {
-        localStorage.setItem('user', null);
+        this.user = null;
       }
     });
   }
 
+  private _user: User;
+
+  get user(): firebase.User {
+    return this._user;
+  }
+
+  set user(value: firebase.User) {
+    this._user = value;
+    this._user$.next(value);
+  }
+
+  private _user$: ReplaySubject<User> = new ReplaySubject<User>(1);
+
+  get user$(): Observable<User> {
+    return this._user$.asObservable();
+  }
+
   get isLoggedIn(): boolean {
-    const user = JSON.parse(localStorage.getItem('user'));
-    return user !== null;
+    return this._user != null;
   }
 
   async loginWithGoogle() {
@@ -42,7 +56,7 @@ export class UserService {
   async login(email: string, password: string) {
     try {
       await this.afAuth.auth.signInWithEmailAndPassword(email, password);
-      this.router.navigate(['dashboard']);
+      this.router.navigate(['/dashboard']);
     } catch (e) {
       alert('Error! ' + e.message);
     }
@@ -50,8 +64,7 @@ export class UserService {
 
   async logout() {
     await this.afAuth.auth.signOut();
-    localStorage.removeItem('user');
-    this.router.navigate(['admin/login']);
+    this.router.navigate(['/login']);
   }
 
   async register(email: string, password: string) {

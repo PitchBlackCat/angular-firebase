@@ -4,7 +4,6 @@ import {FormGroup, Validators} from "@angular/forms";
 import {UserService} from '../../../features/user/services/user.service';
 import {MyValidators} from '../../../shared/MyValidators';
 import {Destroyable} from '../../../shared/Destroyable';
-import {distinctUntilChanged, map, takeUntil} from 'rxjs/internal/operators';
 
 @Component({
   selector: 'app-register',
@@ -12,6 +11,8 @@ import {distinctUntilChanged, map, takeUntil} from 'rxjs/internal/operators';
   styleUrls: ['./register.component.css']
 })
 export class RegisterComponent extends Destroyable implements OnInit {
+
+  public loading = false;
 
   public formSettings: DynamicFormSettings = {
     username: {label: 'username', type: 'text', validators: [Validators.required]},
@@ -44,11 +45,16 @@ export class RegisterComponent extends Destroyable implements OnInit {
       return;
     }
 
+    this.loading = true;
     const value = this.form.getRawValue();
-    this.userService.register(value.email, value.password);
+    this.userService.register(value.email, value.password).then(() => this.loading = false, () => this.loading = false);
   }
 
   loginWithGoogle() {
-    this.userService.loginWithGoogle();
+    this.loading = true;
+    this.userService.loginWithGoogle().then(
+      () => this.loading = false,
+      () => this.loading = false
+    );
   }
 }

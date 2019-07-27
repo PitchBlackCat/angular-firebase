@@ -1,21 +1,21 @@
 <div class="p-grid">
-  <div class="p-col p-md-6 p-md-offset-3">
+  <div class="p-col p-md-6 p-md-offset-3 p-align-center flex flex-column">
 
-    <p-card>
-
-      <p-header>
-        <h1>Login</h1>
-        <h4>om 3D prints te kunnen bestellen, of als je zelf een 3D printer hebt kan je je diensten aanbieden tegen betaling</h4>
-      </p-header>
+    <p-card header="Login"
+            subheader="om 3D prints te kunnen bestellen, of als je zelf een 3D printer hebt kan je je diensten aanbieden tegen betaling">
 
       <app-dynamic-form [settings]="formSettings" (form)="form = $event"></app-dynamic-form>
 
       <p-footer>
-        <button (click)="submit()" pButton type="button" [disabled]="form.invalid" label="Log in" icon="pi pi-check"></button>
+        <button [ladda]="loading" (click)="submit()" pButton type="button" [disabled]="form.invalid" label="Log in"
+                icon="pi pi-check">
+        </button>
       </p-footer>
     </p-card>
 
-    <button (click)="loginWithGoogle()" pButton type="button" label="Login met Google" icon="pi pi-google"></button>
+    <button [ladda]="loading" class="ui-button-danger" (click)="loginWithGoogle()" pButton type="button" label="Login met Google"
+            icon="pi pi-google">
+    </button>
 
   </div>
 </div>

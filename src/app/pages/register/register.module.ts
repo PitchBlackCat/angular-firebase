@@ -18,7 +18,7 @@ import {UserModule} from '../../features/user/user.module';
     DynamicFormModule,
     CardModule,
     SharedModule,
-    UserModule
+    UserModule,
   ]
 })
 export class RegisterModule {

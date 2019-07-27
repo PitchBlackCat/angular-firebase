@@ -7,6 +7,7 @@ import {SharedModule} from '../../shared/shared.module';
 import {UserModule} from '../../features/user/user.module';
 import {CardModule} from 'primeng/card';
 import {DynamicFormModule} from '../../dynamic-form/dynamic-form.module';
+import {ProgressSpinnerModule} from 'primeng/primeng';
 
 
 @NgModule({
@@ -17,7 +18,8 @@ import {DynamicFormModule} from '../../dynamic-form/dynamic-form.module';
     DynamicFormModule,
     CardModule,
     SharedModule,
-    UserModule
+    UserModule,
+    ProgressSpinnerModule,
   ]
 })
 export class LoginModule { }
