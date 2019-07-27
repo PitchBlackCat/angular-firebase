@@ -1,0 +1,19 @@
+<form [formGroup]="form$ | async">
+  <ng-container *ngFor="let item of settings | keyvalue">
+    <div [ngSwitch]="item.value.type" class="">
+      <label for="d-i-{{item.key}}">{{item.value.label}}</label>
+      <ng-container *ngSwitchCase="'password'">
+        <div class="ui-inputgroup">
+          <input id="d-i-{{item.key}}" type="password" [formControlName]="item.key" pPassword/>
+        </div>
+      </ng-container>
+
+      <ng-container *ngSwitchDefault>
+        <div class="ui-inputgroup">
+          <span *ngIf="item.value.icon" class="ui-inputgroup-addon"><i class="fa fa-{{item.value.icon}}"></i></span>
+          <input id="d-i-{{item.key}}" type="{{item.value.type}}" pInputText [formControlName]="item.key">
+        </div>
+      </ng-container>
+    </div>
+  </ng-container>
+</form>
