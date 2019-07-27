@@ -17,9 +17,8 @@ export class SearchCardComponent extends Destroyable implements OnInit {
     height: {label: 'height', type: 'number', default: 200, validators: [Validators.required]},
     depth: {label: 'depth', type: 'number', default: 200, validators: [Validators.required]},
     color: {label: 'color', type: 'text', default: 'white', validators: [Validators.required]},
-    nozzle_size: {label: 'nozzle_size', default: '', type: 'text', validators: []},
-    amount: {label: 'amount', type: 'number', default: 1, validators: [Validators.required]},
-    eta: {label: 'eta', type: 'text', default: '', validators: []}
+    material: {label: 'color', type: 'text', default: 'white', validators: [Validators.required]},
+    nozzle_size: {label: 'nozzle_size', default: '', type: 'text', validators: []}
   };
 
   public form: FormGroup;
