@@ -10,6 +10,9 @@ import {DynamicFormModule} from '../dynamic-form/dynamic-form.module';
 import {RouterModule} from '@angular/router';
 import {ProgressSpinnerModule} from 'primeng/primeng';
 import {LaddaModule} from 'angular2-ladda';
+import {AngularFirestoreModule} from '@angular/fire/firestore';
+import {UserModule} from '../features/user/user.module';
+import {AngularFireDatabaseModule} from '@angular/fire/database';
 
 const cards = [
   SearchCardComponent
@@ -28,7 +31,9 @@ const components = [
     ButtonModule,
     DynamicFormModule,
     ProgressSpinnerModule,
-    LaddaModule
+    LaddaModule,
+    AngularFirestoreModule,
+    UserModule
   ],
   exports: [
     ButtonModule,

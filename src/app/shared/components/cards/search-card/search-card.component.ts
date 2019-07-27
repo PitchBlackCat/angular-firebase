@@ -13,7 +13,7 @@ export class SearchCardComponent extends Destroyable implements OnInit {
 
   public loading: boolean = false;
   public formSettings: DynamicFormSettings = {
-    width: {label: 'width', type: 'number', default: 200, validators: [Validators.required, Validators.email]},
+    width: {label: 'width', type: 'number', default: 200, validators: [Validators.required]},
     height: {label: 'height', type: 'number', default: 200, validators: [Validators.required]},
     depth: {label: 'depth', type: 'number', default: 200, validators: [Validators.required]},
     color: {label: 'color', type: 'text', default: 'white', validators: [Validators.required]},
@@ -35,6 +35,9 @@ export class SearchCardComponent extends Destroyable implements OnInit {
     for (const control in this.form.controls) {
       this.form.controls[control].updateValueAndValidity();
     }
+
+    if (this.form.invalid)
+      return;
 
     this.loading = false;
     const value = this.form.getRawValue();

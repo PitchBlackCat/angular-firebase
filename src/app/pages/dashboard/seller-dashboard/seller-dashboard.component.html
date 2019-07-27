@@ -1,1 +1,52 @@
-<p>seller-dashboard works!</p>
+<div class="p-grid">
+  <div class="p-col p-md-6 p-md-offset-3">
+    <div class="p-grid">
+      <p-card class="p-col p-md-6" header="Dit ben ik!" *ngIf="userService.user$ | async as user">
+        <dl>
+          <dt>Email</dt>
+          <dd>{{user.email}}</dd>
+        </dl>
+        <p-footer>
+          <button (click)="userService.logout()" pButton type="button" label="Log uit"
+                  icon="pi pi-sign-out">
+          </button>
+        </p-footer>
+      </p-card>
+
+    </div>
+  </div>
+
+  <div class="p-col p-md-6 p-md-offset-3">
+    <h2>Mijn 3D Printers</h2>
+
+    <div class="p-grid">
+      <div class="p-col p-md-6" *ngFor="let printer of (printers$ | async)">
+        <p-card header="{{printer.name}}">
+          <dl>
+            <dt>width</dt>
+            <dd>{{printer.width}}</dd>
+            <dt>height</dt>
+            <dd>{{printer.height}}</dd>
+            <dt>depth</dt>
+            <dd>{{printer.depth}}</dd>
+          </dl>
+          <p-footer>
+            <button [ladda]="loading" (click)="delete(printer)" pButton type="button" label="verwijder"
+                    icon="pi pi-minus">
+            </button>
+          </p-footer>
+        </p-card>
+      </div>
+
+      <p-card class="p-col p-md-6" header="Nieuwe printer toevoegen">
+        <app-dynamic-form [settings]="printerSettings" (form)="form = $event"></app-dynamic-form>
+        <p-footer>
+          <button [ladda]="loading" (click)="addPrinter()" pButton type="button" label="Voeg toe"
+                  icon="pi pi-plus">
+          </button>
+        </p-footer>
+      </p-card>
+    </div>
+
+  </div>
+</div>

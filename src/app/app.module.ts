@@ -14,6 +14,7 @@ import {AngularFireModule} from '@angular/fire';
 import {AngularFirestoreModule} from '@angular/fire/firestore';
 import {AngularFireAuthModule} from '@angular/fire/auth';
 import {LaddaModule} from 'angular2-ladda';
+import {AngularFireDatabaseModule} from '@angular/fire/database';
 
 @NgModule({
   declarations: [
@@ -37,6 +38,7 @@ import {LaddaModule} from 'angular2-ladda';
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFirestoreModule,
     AngularFireAuthModule,
+    AngularFireDatabaseModule,
 
     LaddaModule.forRoot({
       style: 'expand-right',

@@ -1,1 +1,20 @@
-<p>buyer-dashboard works!</p>
+<div class="p-grid">
+  <div class="p-col p-md-6 p-md-offset-3">
+    <div class="p-grid">
+      <p-card class="p-col p-md-6" header="Dit ben ik!" *ngIf="userService.user$ | async as user">
+        <dl>
+          <dt>Email</dt>
+          <dd>{{user.email}}</dd>
+        </dl>
+        <p-footer>
+          <button pButton type="button"
+             routerLink="../seller"
+             label="Word verkoper!"
+             icon="pi pi-money-bill">
+          </button>
+        </p-footer>
+      </p-card>
+
+    </div>
+  </div>
+</div>
