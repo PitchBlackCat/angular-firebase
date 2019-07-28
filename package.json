@@ -3,13 +3,13 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "noder server.js",
+    "start": "node server.js",
     "serve": "ng server",
     "build": "ng build --aot --prod",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "compodoc": "npx compodoc -p tsconfig.app.json"
+    "compodoc": "npx compodoc  -p tsconfig.app.json"
   },
   "engine": {
     "node": "~10.16.0",
